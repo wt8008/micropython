@@ -1,0 +1,45 @@
+make -C ../../../Libraries/MAX3263XPeriphDriver lib BUILD_DIR=/c/Maxim/Firmware/MAX3263X/Applications/EvKitExamples/Hello_World/build/PeriphDriver
+make[1]: Entering directory `/c/Maxim/Firmware/MAX3263X/Libraries/MAX3263XPeriphDriver'
+  CC    Source/clkman.c
+  CC    Source/crc.c
+  CC    Source/flc.c
+  CC    Source/gpio.c
+  CC    Source/i2cm.c
+  CC    Source/i2cs.c
+  CC    Source/icc.c
+  CC    Source/ioman.c
+  CC    Source/lp.c
+  CC    Source/mxc_assert.c
+  CC    Source/mxc_lock.c
+  CC    Source/mxc_sys.c
+  CC    Source/nvic_table.c
+  CC    Source/pmu.c
+  CC    Source/prng.c
+  CC    Source/pt.c
+  CC    Source/rtc.c
+  CC    Source/spim.c
+  CC    Source/spix.c
+  CC    Source/tmr.c
+  CC    Source/tmr_utils.c
+  CC    Source/uart.c
+  CC    Source/wdt.c
+  CC    Source/wdt2.c
+  CC    Source/aes.c
+  CC    Source/adc.c
+  CC    Source/maa.c
+  CC    Source/owm.c
+  AR    /c/Maxim/Firmware/MAX3263X/Applications/EvKitExamples/Hello_World/build/PeriphDriver/PeriphDriver.a
+make[1]: Leaving directory `/c/Maxim/Firmware/MAX3263X/Libraries/MAX3263XPeriphDriver'
+  CC    main.c
+  CC    ../../../Libraries/Boards/EvKit_V1/Source/board.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/stdio.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/led.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/pb.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/nhd12832.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/max14690.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/mx25.c
+  CC    ../../../Libraries/Boards/EvKit_V1/../Source/mx25_stub.c
+  AS    /c/Maxim/Firmware/MAX3263X/Libraries/CMSIS/Device/Maxim/MAX3263X/Source/GCC/startup_max3263x.S
+  CC    /c/Maxim/Firmware/MAX3263X/Libraries/CMSIS/Device/Maxim/MAX3263X/Source/heap.c
+  CC    /c/Maxim/Firmware/MAX3263X/Libraries/CMSIS/Device/Maxim/MAX3263X/Source/system_max3263x.c
+  LD    /c/Maxim/Firmware/MAX3263X/Applications/EvKitExamples/Hello_World/build/max3263x.elf 

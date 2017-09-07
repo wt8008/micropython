@@ -1,0 +1,15 @@
+Evaluation Kit Demo
+
+Example functionality:                                                   
+Basic demo showing the functionality of the evaluation kit.
+ - Sends stdio to UART at 115200 baud
+ - Displays data on the LCD
+ - Blinks LEDs
+
+The Demo is available in a Flash Debug target.
+
+  MAX3263X Flash:  runs from Internal Flash located on chip
+                   (used for production or target debugging)
+
+Jumper Configuration:
+  No jumper configuration is required for the Demo program.

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infocenter_data version="1.0">
+  <iar_name>LP_GPIO Example</iar_name>                           <!--App-->
+  <iar_description>
+	Example of how to sleep from LP3 (run mode) and wake-up from LP2, LP1 and LP0 by using the GPIO wake-up triggers
+</iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$\IAR</iar_curdir>
+</infocenter_data>

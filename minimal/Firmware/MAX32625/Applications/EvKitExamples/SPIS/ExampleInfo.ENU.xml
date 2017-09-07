@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infocenter_data version="1.0">
+  <iar_name>SPI Slave Example</iar_name>                           <!--App-->
+  <iar_description>
+  Demonstrates using the SPI Slave peripheral on the MAX32625 evaluation kit. 
+  </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$</iar_curdir>
+</infocenter_data>
