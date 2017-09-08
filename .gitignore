@@ -43,6 +43,7 @@ user.props
 ######################
 genrst/
 
-#Sublime text editor project file
+#Sublime text editor project/workspace files
 ######################
 *.sublime-project
+*.sublime-workspace
