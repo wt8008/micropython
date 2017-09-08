@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<infocenter_data version="1.0">
-  <iar_name>LP_Watchdog Example</iar_name>                           <!--App-->
-  <iar_description>
-	Demonstrates using the nanoring watchdog timer (WDT2) to wake-up from LP1 and/or reset the program 
-  </iar_description>                     <!--App short description-->
-  <iar_curdir>$CUR_DIR$\IAR</iar_curdir>
-</infocenter_data>

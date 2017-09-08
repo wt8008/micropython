@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<infocenter_data version="1.0">
-  <iar_name>Low-Power Real-Time Clock Example</iar_name>                           <!--App-->
-  <iar_description>
-    Shows an example of how to sleep from LP3 (run mode) and wake-up from both LP1 and LP0 by using the RTC compare wake-up triggers. 
-  </iar_description>                     <!--App short description-->
-  <iar_curdir>$CUR_DIR$\IAR</iar_curdir>
-</infocenter_data>
