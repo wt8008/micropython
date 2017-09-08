@@ -10,6 +10,9 @@
 #include "py/mperrno.h"
 #include "lib/utils/pyexec.h"
 
+#include "mxc_config.h"
+#include "max14690n.h"
+
 #if MICROPY_ENABLE_COMPILER
 void do_str(const char *src, mp_parse_input_kind_t input_kind) {
     nlr_buf_t nlr;
@@ -31,6 +34,10 @@ static char *stack_top;
 static char heap[2048];
 
 int main(int argc, char **argv) {
+    //Enable PMIC Rails
+    MAX14690_LDO2setMode(LDO_OUTPUT_ENABLED);
+    MAX14690_LDO3setMode(LDO_OUTPUT_ENABLED);
+    
     int stack_dummy;
     stack_top = (char*)&stack_dummy;
 
@@ -103,6 +110,7 @@ void MP_WEAK __assert_func(const char *file, int line, const char *func, const c
 
 extern uint32_t _estack, _sidata, _sdata, _edata, _sbss, _ebss;
 
+/*
 void Reset_Handler(void) __attribute__((naked));
 void Reset_Handler(void) {
     // set stack pointer
@@ -253,5 +261,6 @@ void stm32_init(void) {
     USART1->BRR = (104 << 4) | 3; // 16MHz/(16*104.1875) = 9598 baud
     USART1->CR1 = 0x0000200c; // USART enable, tx enable, rx enable
 }
+*/
 
 #endif
