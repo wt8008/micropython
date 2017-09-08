@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infocenter_data version="1.0">
+  <iar_name>Timer Example</iar_name>                           <!--App-->
+  <iar_description>
+    Timer configuration and usage.
+   </iar_description>                     <!--App short description-->
+  <iar_curdir>$CUR_DIR$\IAR</iar_curdir>
+</infocenter_data>

@@ -1,0 +1,11 @@
+SPIX example using the MX25
+
+Uses the MX25 on the EvKit to show the SPIX functionality. Erases, writes, and then verifies the data. MX25_BAUD, MX25_ADDR, and MX25_SPIM_WIDTH can be changed to alter the communication between the devices. Refer to the schematic for the pinout and ensure that there are no switches blocking the communication to the MX25.
+
+Example functionality:                                                   
+ - Erases, writes program data and verifies the data written to the MX25 External Memory
+
+ - Executes the written program data 
+
+ - Sends status updates via serial
+ 

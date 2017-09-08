@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+     xml:lang="en">
+  <head>
+    <title>Information Center for ARM</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" media="all" href="file://$TOOLKIT_DIR$/doc/infocenter/style/ewic.css" />
+  </head>
+  <body>
+  <div id="topbanner"></div>
+  <div id="titlebanner_small">
+    <h2>Information Center for ARM</h2>
+  </div>
+ <div class="breadcrumb"><a href="$TOOLKIT_DIR$/doc/infocenter/index.ENU.html">IAR Information Center for ARM</a> | <a href="$TOOLKIT_DIR$/Examples/ExampleDirInfo.xml_auto">EXAMPLE PROJECTS</a> | <a href="iarfile://BACK">...</a> | <!--iar_name-->MAX3263x-EVKIT</div>
+  <div class="mainblock">
+   <h2>LP_Watchdog Example description</h2>
+
+   <pre>  >  <!--Insert readme.txt-->
+    When the program starts LED3 is turned on (LP3 mode) and LED0 start blinking continuously.
+    Open a terminal program to see interrupt messages.
+
+    SW1: Push SW1 to enter LP1 and wake-up based on watchdog timer's wake-up period (2 seconds).
+         While in LP1 LED0 stops blinking and LED1 turns on. After about 2 seconds the watchdog
+         wake-up period expires and wakes up to LP3 (LED3 on, LED0 continuous blinking).
+
+    SW2: Push SW2 to enter LP1 and reset program based on watchdog timer's reset period (4 seconds).
+         While in LP1 LED0 stops blinking and LED1 turns on.
+         After about 4 seconds the watchdog reset period expires and resets the program. (LED3 blinks three times).
+
+    SW3: Push SW3 to trigger a long delay and see the program restart by blinking LED3 three times.
+         During the delay LED0 will stop blinking. This delay is long enough for the reset period to
+         expire and trigger a reset (4 seconds).
+  </pre>
+
+  </div>
+  </body>
+</html>
