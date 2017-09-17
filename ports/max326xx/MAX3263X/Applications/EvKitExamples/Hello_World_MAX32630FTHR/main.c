@@ -55,7 +55,6 @@
 /***** Functions *****/
 
 // *****************************************************************************
-/*
 int main(void)
 {
     printf("Hello World!\n");
@@ -75,4 +74,3 @@ int main(void)
         printf("count = %d\n", count++);
     }
 }
-*/

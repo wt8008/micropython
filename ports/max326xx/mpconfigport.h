@@ -1,7 +1,6 @@
 #include <stdint.h>
 
-// options to control how MicroPython is built
-
+// options to control how MicroPython is built 
 // You can disable the built-in MicroPython compiler by setting the following
 // config option to 0.  If you do this then you won't get a REPL prompt, but you
 // will still be able to execute pre-compiled scripts, compiled with mpy-cross.
@@ -88,7 +87,8 @@ typedef long mp_off_t;
 
 #ifdef __thumb__
 #define MICROPY_MIN_USE_CORTEX_CPU (1)
-#define MICROPY_MIN_USE_STM32_MCU (1)
+//#define MICROPY_MIN_USE_STM32_MCU (1)
+#define MICROPY_MAX326XX_MCU (1)
 #endif
 
 #define MP_STATE_PORT MP_STATE_VM

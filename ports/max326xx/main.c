@@ -11,9 +11,12 @@
 #include "lib/utils/pyexec.h"
 
 #include "mxc_config.h"
+#include "tmr_utils.h"
 #include "max14690n.h"
+#include "led.h"
 
 #if MICROPY_ENABLE_COMPILER
+/*
 void do_str(const char *src, mp_parse_input_kind_t input_kind) {
     nlr_buf_t nlr;
     if (nlr_push(&nlr) == 0) {
@@ -28,16 +31,30 @@ void do_str(const char *src, mp_parse_input_kind_t input_kind) {
         mp_obj_print_exception(&mp_plat_print, (mp_obj_t)nlr.ret_val);
     }
 }
+*/
 #endif
 
-static char *stack_top;
-static char heap[2048];
+//static char *stack_top;
+//static char heap[2048];
 
-int main(int argc, char **argv) {
+//int main(int argc, char **argv) {
+int main(void) {
     //Enable PMIC Rails
     MAX14690_LDO2setMode(LDO_OUTPUT_ENABLED);
     MAX14690_LDO3setMode(LDO_OUTPUT_ENABLED);
-    
+
+    int count = 0;
+
+    while (1)
+    {
+        LED_On(0);
+        TMR_Delay(MXC_TMR0, MSEC(500));
+        LED_Off(0);
+        TMR_Delay(MXC_TMR0, MSEC(500));
+        mp_printf(&mp_plat_print, "count = %d\n", count++);
+    }
+
+    /*
     int stack_dummy;
     stack_top = (char*)&stack_dummy;
 
@@ -63,9 +80,11 @@ int main(int argc, char **argv) {
     pyexec_frozen_module("frozentest.py");
     #endif
     mp_deinit();
+    */
     return 0;
 }
 
+/*
 void gc_collect(void) {
     // WARNING: This gc_collect implementation doesn't try to get root
     // pointers from CPU registers, and thus may function incorrectly.
@@ -103,12 +122,13 @@ void MP_WEAK __assert_func(const char *file, int line, const char *func, const c
     __fatal_error("Assertion failed");
 }
 #endif
+*/
 
 #if MICROPY_MIN_USE_CORTEX_CPU
 
 // this is a minimal IRQ and reset framework for any Cortex-M CPU
 
-extern uint32_t _estack, _sidata, _sdata, _edata, _sbss, _ebss;
+//extern uint32_t _estack, _sidata, _sdata, _edata, _sbss, _ebss;
 
 /*
 void Reset_Handler(void) __attribute__((naked));
@@ -167,8 +187,7 @@ void _start(void) {
     // now that we have a basic system up and running we can call main
     main(0, NULL);
 
-    // we must not return
-    for (;;) {
+    // we must not return for (;;) {
     }
 }
 

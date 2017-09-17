@@ -19,13 +19,33 @@ INC += -IMAX3263X/Libraries/CMSIS/Device/Maxim/MAX3263X/Include
 INC += -IMAX3263X/Libraries/CMSIS/Include
 INC += -IMAX3263X/Libraries/MAX3263XPeriphDriver/Include
 INC += -IMAX3263X/Libraries/Boards/Include
+INC += -IMAX3263X/Libraries/Boards/Pegasus_V1/Include
 
 ifeq ($(CROSS), 1)
 DFU = $(TOP)/tools/dfu.py
 PYDFU = $(TOP)/tools/pydfu.py
-CFLAGS_CORTEX_M4 = -mthumb -mtune=cortex-m4 -mabi=aapcs-linux -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -fsingle-precision-constant -Wdouble-promotion -DTARGET_REV=0x4132 -DTARGET=MAX3263x
-CFLAGS = $(INC) -Wall -Werror -std=c99 -nostdlib $(CFLAGS_CORTEX_M4) $(COPT)
-LDFLAGS = -T MAX3263X/Libraries/CMSIS/Device/Maxim/MAX3263X/Source/GCC/max3263x.ld -Map=$@.map --cref --gc-sections
+CFLAGS_CORTEX_M4 = 	-mthumb \
+				   	-mcpu=cortex-m4 \
+				   	-mfloat-abi=softfp \
+				   	-mfpu=fpv4-sp-d16 \
+				   	-Wa,-mimplicit-it=thumb \
+				   	-ffunction-sections \
+					-fdata-sections \
+					-MD \
+					-Wno-format \
+					-c \
+					-DTARGET_REV=0x4132 -DTARGET=MAX3263x -DRO_FREQ=96000000 -DMXC_ASSERT_ENABLE -g3 -ggdb -DDEBUG -nostdlib
+CFLAGS = $(INC) -Wall -Werror -std=c99 $(CFLAGS_CORTEX_M4) $(COPT)
+LDFLAGS = 	-T MAX3263X/Libraries/CMSIS/Device/Maxim/MAX3263X/Source/GCC/max3263x.ld --entry Reset_Handler \
+			-mthumb \
+		  	-mcpu=cortex-m4 \
+		  	-mfloat-abi=softfp \
+		  	-mfpu=fpv4-sp-d16 \
+		  	-Xlinker --gc-sections \
+		  	-Xlinker -Map\
+			-Xlinker build/$@.map \
+		   	-Xlinker -Lbuild
+LD = gcc
 else
 LD = gcc
 CFLAGS = -m32 $(INC) -Wall -Werror -std=c99 $(COPT)
@@ -40,7 +60,7 @@ CFLAGS += -Os -DNDEBUG
 CFLAGS += -fdata-sections -ffunction-sections
 endif
 
-LIBS = PeriphDriver.a max3263x.a
+LIBS = -Xlinker --start-group -l :PeriphDriver.a -l :max3263x.a -lc -lm -lnosys -Xlinker --end-group 
 
 SRC_C = \
 	main.c \
@@ -61,19 +81,21 @@ endif
 
 library:
 	TARGET=MAX3263x COMPILER=GCC make -C MAX3263X/Libraries/MAX3263XPeriphDriver
-	cp MAX3263X/Libraries/MAX3263XPeriphDriver/Build/PeriphDriver.a .
+	mkdir -p build
+	cp MAX3263X/Libraries/MAX3263XPeriphDriver/Build/PeriphDriver.a ./build/
 
 board:
 	make -C MAX3263X/Applications/EvKitExamples/Hello_World_MAX32630FTHR lib
-	cp MAX3263X/Applications/EvKitExamples/Hello_World_MAX32630FTHR/build/max3263x.a .
+	mkdir -p build
+	cp MAX3263X/Applications/EvKitExamples/Hello_World_MAX32630FTHR/build/max3263x.a ./build/
 
 $(BUILD)/_frozen_mpy.c: frozentest.mpy $(BUILD)/genhdr/qstrdefs.generated.h
 	$(ECHO) "MISC freezing bytecode"
 	$(Q)$(TOP)/tools/mpy-tool.py -f -q $(BUILD)/genhdr/qstrdefs.preprocessed.h -mlongint-impl=none $< > $@
 
-$(BUILD)/firmware.elf: $(OBJ)
+$(BUILD)/firmware.elf: $(OBJ) library board
 	$(ECHO) "LINK $@"
-	$(Q)$(LD) $(LDFLAGS) -o $@ $^ $(LIBS)
+	$(Q)$(CROSS_COMPILE)$(LD) $(LDFLAGS) -o $@ $(OBJ) $(LIBS)
 	$(Q)$(SIZE) $@
 
 $(BUILD)/firmware.bin: $(BUILD)/firmware.elf
